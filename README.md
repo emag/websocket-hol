@@ -10,7 +10,42 @@ JJUG CCC 2013 Fall での、寺田さんのハンズオンを WildFly に移植�
 * [Maven 3.x](http://maven.apache.org/download.cgi)
 * [WildFly 8.0.0.Beta1](http://www.wildfly.org/download/)
 
+WildFLy のインストールディレクトリを $WILDFLY_HOME と表記します。
+
+## アプリケーションのビルド
+
+~~~
+$ git clone https://github.com/emag/websocket-hol
+$ cd websocket-hol
+$ mvn clean package
+~~~
+
+websocket-hol を $PROJECT と表記します。
+$PROJECT/target に、websocket-hol.war が作成されます。
+
 ## スタンドアロン環境での実行
+
+WildFly をスタンドアロンで起動します。
+なお、messaging サブシステムを利用するので、standalone-full.xml を指定します。
+
+~~~
+$ cd $WILDFLY_HOME/bin
+$ ./standalone.sh -c standalone-full.xml
+~~~
+
+アプリケーションで利用するトピックを登録します。
+
+~~~
+$ cd $WILDFLY_HOME/bin
+$ ./jboss-cli.sh -c --file=$PROJECT/inforegtopic-add-standalone.cli
+~~~
+
+アプリケーションをデプロイします。
+
+~~~
+$ cd $WILDFLY_HOME/bin
+$ ./jboss-cli.sh -c --command='deploy /vagrant/websocket-hol.war'
+~~~
 
 ## ドメイン環境での実行
 
