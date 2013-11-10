@@ -14,7 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- versions -->
+        <version.java>1.7</version.java>
+        <version.jboss.javaee.7.0.bom>1.0.0.Beta2</version.jboss.javaee.7.0.bom>
         <version.jboss.maven.plugin>7.3.Final</version.jboss.maven.plugin>
+        <version.junit>4.11</version.junit>
+        <version.maven.compiler.plugin>3.1</version.maven.compiler.plugin>
+        <version.maven.war.plugin>2.4</version.maven.war.plugin>
+
     </properties>
 
     <dependencyManagement>
@@ -22,7 +28,7 @@
             <dependency>
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-7.0</artifactId>
-                <version>1.0.0.Beta2</version>
+                <version>${version.jboss.javaee.7.0.bom}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -58,7 +64,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -69,16 +75,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${version.maven.compiler.plugin}</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${version.java}</source>
+                    <target>${version.java}</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
+                <version>${version.maven.war.plugin}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
