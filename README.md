@@ -81,14 +81,14 @@ machine3/configuration/host-slave.xml を編集します。
 ~~~
 
 ドメインコントローラを起動します。
-<ip-addr> には、ネットワークインタフェースの IP アドレスを指定してください。
+`<ip-addr>` には、ネットワークインタフェースの IP アドレスを指定してください。
 
 ~~~
 $ ./domain.sh --host-config=host-master.xml -Djboss.domain.base.dir=../machine1 -Djboss.bind.address.management=<ip-addr>
 ~~~
 
 メッセージングのクラスタリング設定(ユーザとパスワード)を行います。
-<ip-addr> はドメインコントローラの -Djboss.bind.address.management で指定した値と同一です。
+`<ip-addr>` はドメインコントローラの -Djboss.bind.address.management で指定した値と同一です。
 
 ~~~
 $ ./jboss-cli.sh -c --controller=<ip-addr>:9990 --command='/profile=full-ha/subsystem=messaging/hornetq-server=default:write-attribute(name=cluster-user,value="ClusterUser")'
@@ -97,14 +97,14 @@ $ ./jboss-cli.sh -c --controller=<ip-addr>:9990 --command='/profile=full-ha/subs
 
 
 1つ目のホストコントローラを起動します。
-<ip-addr> はドメインコントローラの -Djboss.bind.address.management で指定した値と同一です。
+`<ip-addr>` はドメインコントローラの -Djboss.bind.address.management で指定した値と同一です。
 
 ~~~
 $ ./domain.sh --host-config=host-slave.xml -Djboss.domain.base.dir=../machine2 -Djboss.domain.master.address=<ip-addr> -Djboss.management.native.port=19999
 ~~~
 
 2つ目のホストコントローラを起動します。
-<ip-addr> はドメインコントローラの -Djboss.bind.address.management で指定した値と同一です。
+`<ip-addr>` はドメインコントローラの -Djboss.bind.address.management で指定した値と同一です。
 
 ~~~
 $ ./domain.sh --host-config=host-slave.xml -Djboss.domain.base.dir=../machine3 -Djboss.domain.master.address=<ip-addr> -Djboss.management.native.port=29999
