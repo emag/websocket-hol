@@ -18,9 +18,9 @@ JJUG CCC 2013 Fall での、寺田さんのハンズオンを WildFly に移植�
 1つのマシンで 3 ノードを起動し、それぞれのベースとなるディレクトリを machine1, machine2, machine3 とします。
 それぞれの役割は以下です。
 
-machine1 : ドメインコントローラ
-machine2 : ホストコントローラ
-machine3 : ホストコントローラ
+* machine1 : ドメインコントローラ
+* machine2 : ホストコントローラ
+* machine3 : ホストコントローラ
 
 ~~~
 $ cd $WILDFLY_HOME
@@ -74,7 +74,7 @@ machine3/configuration/host-slave.xml を編集します。
 [...]
 // 85行目付近
     <servers>
-        <server name="server-three" group="other-server-group"> // (3) 既存のサーバを削除し、port-offset が 1000 の server-three を追加
+        <server name="server-three" group="other-server-group"> // (2) 既存のサーバを削除し、port-offset が 1000 の server-three を追加
             <socket-bindings port-offset="1000"/>
         </server>
     </servers>
