@@ -1,0 +1,7 @@
+batch
+
+jms-topic add --topic-address=inforegTopic --entries=jms/inforegtopic
+
+run-batch
+
+:reload
