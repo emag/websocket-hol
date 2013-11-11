@@ -2,7 +2,10 @@
 
 ## これは何？
 
-JJUG CCC 2013 Fall での、寺田さんのハンズオンを WildFly に移植したものです。
+[JJUG CCC 2013 Fall](http://www.java-users.jp/?page_id=695) での、以下 寺田さんのハンズオンを WildFly に移植したものです。
+
+* [R5-1 Java EEハンズオン](http://www.java-users.jp/?page_id=709#r5-1)
+* [アプリケーション概要](http://yoshio3.com/2013/10/23/java-ee-7-hol-on-jjug-ccc/)
 
 ## 必要なもの
 
@@ -44,10 +47,42 @@ $ ./jboss-cli.sh -c --file=$PROJECT/inforegtopic-add-standalone.cli
 
 ~~~
 $ cd $WILDFLY_HOME/bin
-$ ./jboss-cli.sh -c --command='deploy /vagrant/websocket-hol.war'
+$ ./jboss-cli.sh -c --command='deploy $PROJECT/target/websocket-hol.war'
 ~~~
 
+デプロイが失敗する場合、WildFLy を再起動するとうまくいくことがあります。
+
+デプロイが成功したら、以下の URL にアクセスします。
+
+
+[http://localhost:8080/websocket-hol/client-endpoint.html](http://localhost:8080/websocket-hol/client-endpoint.html)
+
+「サーバ接続ポート番号」のところに、localhost:8080 と入力します。
+
+「Connect」ボタンをクリックすると WebSocket サーバと接続し、「DisConnect」をクリックすると切断します。
+
+接続と切断をするたびに、WildFly のログに以下のような情報が出力されます。
+
+~~~
+11:19:35,329 INFO  [org.emamotor.wildfly.websockethol.websockets] (default task-9) connect: E5z6noHAtT2QjkCP1BmF0oEm
+11:22:03,638 INFO  [org.emamotor.wildfly.websockethol.websockets] (default task-10) close: E5z6noHAtT2QjkCP1BmF0oEm
+~~~
+
+E5z6noHAtT2QjkCP1BmF0oEm といった文字列は、クライアントに一意に振られるセッション ID です。
+
+次に接続をしたままで、別のタブや別のブラウザで以下の URL にアクセスします。
+
+[http://localhost:8080/websocket-hol/faces/admin/index.xhtml](http://localhost:8080/websocket-hol/faces/admin/index.xhtml)
+
+入力フォームに適当な文字※ を入力し、「Send Message」をクリックします。
+
+client-endpoint.html に入力した内容が出力されていれば、本アプリケーションは正常に動作しています。
+
+※ 日本語を入力すると文字化けします。
+
 ## ドメイン環境での実行
+
+※ 未完成のドキュメントです。
 
 ドメインモードでそれぞれ 3 ノードの wildfly を起動します。
 1つのマシンで 3 ノードを起動し、それぞれのベースとなるディレクトリを machine1, machine2, machine3 とします。
@@ -144,3 +179,9 @@ $ ./domain.sh --host-config=host-slave.xml -Djboss.domain.base.dir=../machine2 -
 ~~~
 $ ./domain.sh --host-config=host-slave.xml -Djboss.domain.base.dir=../machine3 -Djboss.domain.master.address=<ip-addr> -Djboss.management.native.port=29999
 ~~~
+
+// TODO HornetQ クラスタリング設定
+
+// TODO デプロイ
+
+// TODO 動作確認
