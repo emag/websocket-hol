@@ -2,7 +2,10 @@
 
 ## これは何？
 
-JJUG CCC 2013 Fall での、寺田さんのハンズオンを WildFly に移植したものです。
+[JJUG CCC 2013 Fall](http://www.java-users.jp/?page_id=695) での、以下 寺田さんのハンズオンを WildFly に移植したものです。
+
+* [R5-1 Java EEハンズオン](http://www.java-users.jp/?page_id=709#r5-1)
+* [アプリケーション概要](http://yoshio3.com/2013/10/23/java-ee-7-hol-on-jjug-ccc/)
 
 ## 必要なもの
 
@@ -144,3 +147,6 @@ $ ./domain.sh --host-config=host-slave.xml -Djboss.domain.base.dir=../machine2 -
 ~~~
 $ ./domain.sh --host-config=host-slave.xml -Djboss.domain.base.dir=../machine3 -Djboss.domain.master.address=<ip-addr> -Djboss.management.native.port=29999
 ~~~
+
+// TODO HornetQ クラスタリング設定
+// TODO デプロイ
